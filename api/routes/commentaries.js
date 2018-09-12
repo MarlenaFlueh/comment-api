@@ -1,6 +1,5 @@
 const express = require("express");
 require("dotenv").config();
-const Twit = require("twit");
 
 const Commentary = require("../model/commentary");
 
@@ -27,25 +26,12 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const result = await Commentary.create({ comment: req.body.comment });
-    const oldCommentary = await Commentary.find();
-    if (oldCommentary.length > 5) {
-      await Commentary.findByIdAndRemove(oldCommentary[0]._id);
-    }
     res.json({
       message: "success created!",
       createdCommentaries: {
         comment: result.comment
       }
     });
-    T.post(
-      "statuses/update",
-      {
-        status: `${tweeds(result.comment)[Math.round(Math.random() * 10)]}`
-      },
-      (error, data, response) => {
-        console.log(data);
-      }
-    );
   } catch (error) {
     res.status(500).json({ error });
   }
