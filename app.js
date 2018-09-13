@@ -20,7 +20,14 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(cors());
+//app.use(cors());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true
+  })
+);
 
 app.use("/", commentaryRoutes);
 
