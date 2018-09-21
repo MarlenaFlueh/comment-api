@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const commentarySchema = mongoose.Schema(
   {
-    comment: { type: String, required: true }
+    comment: { type: String, required: true },
+    color: { type: Number }
   },
   {
     versionKey: false

@@ -25,11 +25,15 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const result = await Commentary.create({ comment: req.body.comment });
+    const result = await Commentary.create({
+      comment: req.body.comment,
+      color: req.body.color
+    });
     res.json({
       message: "success created!",
       createdCommentaries: {
-        comment: result.comment
+        comment: result.comment,
+        color: result.color
       }
     });
   } catch (error) {
