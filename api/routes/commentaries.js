@@ -1,5 +1,6 @@
 const express = require("express");
-require("dotenv").config();
+const fs = require("fs")
+const imgPath = "./../assets/test.jpg"
 
 const Commentary = require("../model/commentary");
 
@@ -24,16 +25,19 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+	console.log("IMG" + imgPath)
+	const image = fs.readFileSync(imgPath)
+	console.log(image)
   try {
     const result = await Commentary.create({
       comment: req.body.comment,
-      color: req.body.color
+      image: image
     });
     res.json({
       message: "success created!",
       createdCommentaries: {
         comment: result.comment,
-        color: result.color
+        image: result.image
       }
     });
   } catch (error) {

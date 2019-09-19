@@ -8,9 +8,9 @@ const commentaryRoutes = require("./api/routes/commentaries");
 const app = express();
 
 mongoose.connect(
-  "mongodb+srv://agent006:" +
-    process.env.MONGO_ATLAS_PW +
-    "@comment-api-gij2e.mongodb.net/test?retryWrites=true",
+  "mongodb+srv://tester:" +
+    "agent007" +
+    "@mailcluster-kd5sa.mongodb.net/test?retryWrites=true&w=majority",
   {
     useNewUrlParser: true
   }
